@@ -3,7 +3,7 @@ var exphbs = require("express-handlebars");
 
 var app = express();
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 7090;
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -17,16 +17,18 @@ var icecreams = [
     {name: "pistachio", price: 11, awesomeness: 15 }
   ];
 
-app.get("/icecreams/:name", function(req, res) {
-    for( var i=0; i < icecreams.length; i ++) {
-        if (icecreams[i].name === req.param.name) {
-            return res.render ("icecream", icecreams[i])
-        }
-    }
+app.get("/", (req, res) => {
+    res.render("index")
+})
+
+app.get("/icecreams/:name", (req, res) => {
+    const targetFlavor = req.param.name
+    const found = icecreams.find(flavor => flavor.name === targetFlavor)
+    res.render("flavor", found)
 });
 
 app.get ("/icecreams", function (req, res){
-    res.render("icecream")
+    res.render("icecreams")
 })
 
 
