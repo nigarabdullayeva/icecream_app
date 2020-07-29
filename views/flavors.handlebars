@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Our Flavors</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Awesomeness</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each icecreams }}
+        <tr>
+          <td>{{ name }}</td>
+          <td>${{ price }}</td>
+          <td>{{ awesomeness }}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+
+
